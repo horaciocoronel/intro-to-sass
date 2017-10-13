@@ -2,6 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$backup_font_family: Helvetica, Arial, sans-serif;
+$my_font_family_1: 'Source Sans Pro', $backup_font_family;
+
+$my_font_family_2: 'Oswald', $backup_font_family;
+
+$title_color : #990000;
+$subtitle_color: #999;
+
+// This mixin provides a fancier clearfix than using the overflow property!
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -10,7 +27,7 @@
 
 html {
   box-sizing: inherit;
-  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  font-family: $my_font_family_1;
   font-size: 20px;
   line-height: 1.35;
   height: 100%;
@@ -27,7 +44,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Oswald', Helvetica, Arial, sans-serif;
+  font-family: $my_font_family_2;
   // font-weight: 700;
   line-height: 1.1;
 }
@@ -43,10 +60,10 @@ figure {
 article {
   width: 75%;
   margin: 1rem auto 3rem;
-}
-
-article > header {
-  overflow: auto;
+  > header {
+    @include clearfix;
+  // overflow: auto;
+  }
 }
 
 .home {
@@ -57,35 +74,35 @@ article > header {
 
 .hero-block {
   position: relative;
-  overflow: hidden;
+  @include clearfix;
+  // overflow: hidden;
 }
-
 .hero-logo-container {
   float: left;
   width: 25%;
   padding: 1rem;
-}
 
-.hero-logo-container > .hero-logo {
-  display: block;
-  width: 150px;
-  margin: auto;
+  > .hero-logo {
+    display: block;
+    width: 150px;
+    margin: auto;
+  }
 }
 
 .hero-title-container {
   float: left;
   width: 75%;
-}
 
-.hero-title-container > .hero-title {
-  font-size: 3rem;
-  margin: 2rem 0 0;
-  color: #990000;
-}
+  > .hero-title {
+    font-size: 3rem;
+    margin: 2rem 0 0;
+    color: $title_color;
+  }
 
-.hero-title-container > .hero-tagline {
-  color: #999;
-  margin: 0.25rem 0;
+  .hero-tagline {
+    color: $subtitle_color;
+    margin: 0.25rem 0;
+  }
 }
 
 .article-poster {
@@ -94,22 +111,14 @@ article > header {
     margin-right: 1.5rem;
 }
 
-.article-title > h2 {
-    font-size: 1.2em;
-    color: #999;
-}
-
-.article-title > h1 {
+.article-title {
+  h1 {
     font-size: 2rem;
     margin-bottom: 0;
-    color: #990000;
-}
-
-// This mixin provides a fancier clearfix than using the overflow property!
-@mixin clearfix {
-  &::after {
-    content: "";
-    display: table;
-    clear: both;
+    color: $title_color;
+  }
+  h2 {
+    font-size: 1.2em;
+    color: $subtitle_color;
   }
 }
